@@ -1,0 +1,71 @@
+<%- include ('partials/header') %>
+
+
+    <div class="container">
+        <div class="row">
+            <!--Formulario-->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="titulo" placeholder="Inserta el Título" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="descripcion" cols="80" class="form-control" placeholder="Inserta la descripción"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <select name="prioridad" class="form-control form-control-sm">
+                                    <option>Seleccione una prioridad</option>
+                                    <option>Alta</option>
+                                    <option>Baja</option>
+                                    <option>Media</option>
+                                  </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--Listado-->
+            <div class="col-md-7">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Prioridad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i= 0; i< tasks.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <%= i + 1 %>
+                                </td>
+                                <td>
+                                    <%= tasks[i].titulo %>
+                                </td>
+                                <td>
+                                    <%= tasks[i].descripcion %>
+                                </td>
+                                <td>
+                                    <%= tasks[i].prioridad %>
+                                </td>
+                                <td>
+                                    <a href="/ok/<%= tasks[i]._id %>" class="btn <%= tasks[i].estado ? 'btn-success' : 'btn-dark' %> ">OK</a>
+                                    <a href="/delete/<%= tasks[i]._id %>" class="btn btn-danger">Eliminar</a>
+                                    <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">Editar</a>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include ('partials/footer') %>

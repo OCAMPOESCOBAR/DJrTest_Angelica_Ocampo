@@ -1,0 +1,27 @@
+<%- include ('partials/header') %>
+
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <form action="/edit/<%= task._id %>" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="titulo" placeholder="Inserta el Título" class="form-control" value="<%= task.titulo %>">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="descripcion" cols="80" class="form-control" placeholder="Inserta la descripción"><%= task.descripcion %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select name="prioridad" class="form-control form-control-sm">
+                            <option selected>Seleccione de nuevo la prioridad</option>
+                            <option>Alta</option>
+                            <option>Baja</option>
+                            <option>Media</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include ('partials/footer') %>
